@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OutlookFilters.Windows;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -56,7 +57,8 @@ namespace QuickSend
 		}
 		public void Launch(Office.IRibbonControl control)
 		{
-			MessageBox.Show("Hello World...");
+			var x = new UI();
+			x.Show();
 		}
 		#endregion
 
