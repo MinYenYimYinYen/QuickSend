@@ -26,5 +26,5 @@ namespace OutlookFilters.Windows
             InitializeComponent();
         }
 
-    }
+	}
 }

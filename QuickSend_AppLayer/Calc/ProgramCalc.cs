@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace QuickSend.Models
+namespace QuickSend_AppLayer.Calc
 {
-	public class ProgramOffer
+	public class ProgramCalc
 	{
 		public double PricePerApp { get; set; }
 		public double PricePerAppPPY => Math.Round(PricePerApp * (1 - PrePayPerc),2);
