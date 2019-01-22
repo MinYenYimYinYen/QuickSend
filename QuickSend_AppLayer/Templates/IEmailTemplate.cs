@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace QuickSend_AppLayer.Templates
 {
@@ -13,7 +14,7 @@ namespace QuickSend_AppLayer.Templates
 		string GetSubject();
 		string GetBody();
 		ObservableCollection<Input> RequiredInputs { get;  }
-
+		ICommand TemplateBuild { get; }
 
 	}
 }

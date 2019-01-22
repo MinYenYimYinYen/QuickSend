@@ -1,35 +1,31 @@
-﻿<Window x:Class="OutlookFilters.Windows.UI" 
-				xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
-				xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-				xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-				xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-				xmlns:col ="clr-namespace:QuickSend.UserInterface.Collections"
-				mc:Ignorable="d" Title="Quick Send" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" ResizeMode="CanResizeWithGrip" UseLayoutRounding="True" Height="300" Width="600">
+﻿<Window x:Class="OutlookFilters.Windows.UI" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:col="clr-namespace:QuickSend.UserInterface.Collections" mc:Ignorable="d" Title="Quick Send" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" ResizeMode="CanResizeWithGrip" UseLayoutRounding="True" Height="300" Width="600">
 	<Window.Resources>
 		<col:EmailTemplates x:Key="EmailTemplates" />
 	</Window.Resources>
-	<Grid>
+	<Grid Name="MainGrid">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="Auto" />
 			<ColumnDefinition />
 		</Grid.ColumnDefinitions>
-		<StackPanel Name="LeftPanel" 
-								Grid.Column="0" Width="150">
+		<StackPanel Name="LeftPanel" Grid.Column="0" Width="150">
 			<Label>Select a Template:</Label>
+
 			<ListView Name="ListView_SelectTemplate" 
 								DataContext="{StaticResource EmailTemplates}" ItemsSource="{Binding}">
 				
 			</ListView>
+
+			<ListView Name="ListView_SelectTemplate" DataContext="{StaticResource EmailTemplates}" ItemsSource="{Binding}"></ListView>
+
 		</StackPanel>
 		<StackPanel Grid.Column="1">
-			<Grid Name="RightTop">
+			<Grid Name="RightTop" Grid.Row="0" DataContext="{Binding ElementName=ListView_SelectTemplate, Path=SelectedValue}">
 				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto" />
 					<RowDefinition />
 				</Grid.RowDefinitions>
-				<StackPanel Grid.Row="0">
-					<ItemsControl DataContext="{Binding ElementName=ListView_SelectTemplate, Path=SelectedValue}" 
-												ItemsSource="{Binding Path=RequiredInputs}">
+				<StackPanel>
+					<ItemsControl ItemsSource="{Binding Path=RequiredInputs}">
 						<ItemsControl.ItemsPanel>
 							<ItemsPanelTemplate>
 								<WrapPanel />
@@ -39,15 +35,20 @@
 							<DataTemplate>
 								<UniformGrid>
 									<Label Content="{Binding Path=Label}" />
-									<TextBox Text="{Binding Path=Value}" MaxWidth="150"/>
+									<TextBox Text="{Binding Path=Value}" MaxWidth="150" />
 								</UniformGrid>
 							</DataTemplate>
 						</ItemsControl.ItemTemplate>
 					</ItemsControl>
-					<Button Name="Button_GetTemplate" Content="Get Template" />
+					<Button Name="Button_GetTemplate" Content="Get Template" Command="{Binding Path=TemplateBuild}" />
 				</StackPanel>
-				<StackPanel>
-					
+				<StackPanel Grid.Row="1">
+					<WrapPanel>
+						<Button Content="Subject:" />
+						<Button Content="{Binding Path=Subject}" Background="Beige" />
+					</WrapPanel>
+					<Button Content="Body:" />
+					<TextBox Text="{Binding Path=Body, Mode=TwoWay}" Height="Auto" Margin="45,0,45,0" TextWrapping="WrapWithOverflow" />
 				</StackPanel>
 			</Grid>
 		</StackPanel>
