@@ -71,11 +71,11 @@ namespace QuickSend_AppLayer.Templates
 
 				};
 
-		public ICommand TemplateBuild => new Command(() =>
+		public ICommand TemplateBuild => new Command((param) =>
 			{//Code to run
 				Subject = GetSubject();
 				Body = GetBody();
-			}, () =>
+			}, (param) =>
 			{//Code to check if button is active
 				try
 				{

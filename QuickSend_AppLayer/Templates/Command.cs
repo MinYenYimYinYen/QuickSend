@@ -9,8 +9,8 @@ namespace QuickSend_AppLayer.Templates
 {
 	public class Command : ICommand
 	{
-		public delegate void ICommandOnExecute();
-		public delegate bool ICommandOnCanExecute();
+		public delegate void ICommandOnExecute(object parameterl);
+		public delegate bool ICommandOnCanExecute(object parameter);
 
 		private ICommandOnExecute _execute;
 		private ICommandOnCanExecute _canExecute;
@@ -31,12 +31,12 @@ namespace QuickSend_AppLayer.Templates
 
 		public bool CanExecute(object parameter)
 		{
-			return _canExecute?.Invoke() ?? true;
+			return _canExecute?.Invoke(parameter) ?? true;
 		}
 
 		public void Execute(object parameter)
 		{
-			_execute?.Invoke();
+			_execute?.Invoke(parameter);
 		}
 
 		#endregion
