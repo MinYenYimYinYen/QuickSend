@@ -43,7 +43,7 @@ namespace QuickSend_AppLayer.Templates
 			StringBuilder str = new StringBuilder();
 			str.Append($"Dear {Name}," + Environment.NewLine +
 				$"Thank you for showing interest in our company.  Based on the information you provided, I've prepared an estimate for your 2019 program." + Environment.NewLine +
-				$"Throughout the season, we do 6 services.  Your price per application is {calc.PricePerApp}.  As a new customer we offer the last application FREE!  We offer a 5% discount on the entire season if you choose to prepay.  If you take us up on this deal, your total cost on the season would be {calc.TotalPPY}." + Environment.NewLine +
+				$"Throughout the season, we do 6 services.  Your price per application is {calc.PricePerApp.ToString("$#.00")}.  As a new customer we offer the last application FREE!  We offer a 5% discount on the entire season if you choose to prepay.  If you take us up on this deal, your total cost on the season would be {calc.TotalPPY.ToString("$#.00")}." + Environment.NewLine +
 				$"I'd like to answer any questions you have about our service.  I plan to give you a call as well, but I wanted to get you this email in case we don't get a chance to talk." + Environment.NewLine +
 				$"Thanks Again!" + Environment.NewLine +
 				$" -Darla");

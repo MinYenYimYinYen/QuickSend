@@ -10,11 +10,6 @@
 		<StackPanel Name="LeftPanel" Grid.Column="0" Width="150">
 			<Label>Select a Template:</Label>
 
-			<ListView Name="ListView_SelectTemplate" 
-								DataContext="{StaticResource EmailTemplates}" ItemsSource="{Binding}">
-				
-			</ListView>
-
 			<ListView Name="ListView_SelectTemplate" DataContext="{StaticResource EmailTemplates}" ItemsSource="{Binding}"></ListView>
 
 		</StackPanel>
