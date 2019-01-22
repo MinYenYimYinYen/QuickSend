@@ -2,19 +2,21 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace QuickSend_AppLayer.Templates
 {
-	public class WebLead_Initial : IEmailTemplate
+	public class WebLead_Initial : IEmailTemplate, INotifyPropertyChanged
 	{
-		public double PricePerApp { get; }
-		public string Name { get; }
+		public string PricePerApp { get; set; }
+		public string Name { get; set; }
 
 
-		public WebLead_Initial(double pricePerApp, string name)
+		public WebLead_Initial(string pricePerApp, string name)
 		{
 			PricePerApp = pricePerApp;
 			Name = name;
@@ -31,7 +33,7 @@ namespace QuickSend_AppLayer.Templates
 		{
 			ProgramCalc calc = new ProgramCalc
 			{
-				PricePerApp = PricePerApp,
+				PricePerApp = Convert.ToDouble(PricePerApp),
 				PrePayPerc = .05,
 				TaxPercent = .07,
 				AppCount = 6,
@@ -52,17 +54,72 @@ namespace QuickSend_AppLayer.Templates
 		{
 			return "Web Lead: Initial Email";
 		}
-		public ObservableCollection<Input> RequiredInputs
-		{
-			get
-			{
-				return new ObservableCollection<Input>
+		public ObservableCollection<Input> RequiredInputs => new ObservableCollection<Input>
 				{
-					new Input{Label="AppPrice"},
-					new Input{Label="Name"},
+					new Input
+					{
+						Instance =this,
+						Property =GetType().GetProperty(nameof(PricePerApp)),
+						Label ="AppPrice"
+					},
+					new Input
+					{
+						Instance =this,
+						Property =GetType().GetProperty(nameof(Name)),
+						Label ="Name"
+					},
 
 				};
+
+		public ICommand TemplateBuild => new Command(() =>
+																					 {//Code to run
+																						 Subject = GetSubject();
+																						 Body = GetBody();
+																					 }, () =>
+																					 {//Code to check if button is active
+																						 try
+																						 {
+																							 Convert.ToDouble(PricePerApp);
+																						 }
+																						 catch (Exception)
+																						 { return false; }
+
+																						 if
+																						 (
+																								Convert.ToDouble(PricePerApp) > 0 &&
+																							 !string.IsNullOrWhiteSpace(Name)
+																						 )
+																						 { return true; }
+																						 else { return false; }
+																					 });
+
+		private string subject;
+		public string Subject
+		{
+			get => subject;
+			set
+			{
+				subject = value;
+				OnPropertyChanged(nameof(Subject));
 			}
+		}
+
+		private string body;
+		public string Body
+		{
+			get => body;
+			set
+			{
+				body = value;
+				OnPropertyChanged(nameof(Body));
+			}
+		}
+
+
+		public event PropertyChangedEventHandler PropertyChanged;
+		private void OnPropertyChanged(string name)
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 		}
 	}
 }

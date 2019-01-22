@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuickSend.UserInterface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,15 +17,17 @@ using System.Windows.Shapes;
 
 namespace OutlookFilters.Windows
 {
-    /// <summary>
-    /// Interaction logic for FilterEditor.xaml
-    /// </summary>
-    public partial class UI : Window
-    {
-        public UI()
-        {
-            InitializeComponent();
-        }
+	/// <summary>
+	/// Interaction logic for FilterEditor.xaml
+	/// </summary>
+	public partial class UI : Window
+	{
+		public UI()
+		{
+			InitializeComponent();
+		}
+
+
 
 	}
 }
