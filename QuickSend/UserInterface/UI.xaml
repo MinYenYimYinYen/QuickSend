@@ -46,10 +46,12 @@
 				</StackPanel>
 				<StackPanel Grid.Row="1">
 					<WrapPanel>
-						<Button Content="Subject:" Command="{Binding Path=AssignSubject}"/>
+						<Button Content="Subject:" 
+										Command="{Binding Path=AssignSubject}" CommandParameter="{Binding Path=Subject}"/>
 						<TextBox Text="{Binding Path=Subject}" Background="Beige" />
 					</WrapPanel>
-					<Button Content="Body:" />
+					<Button Content="Body:" 
+									Command="{Binding Path=AssignBody}" CommandParameter="{Binding Path=Body}" />
 					<TextBox Text="{Binding Path=Body, Mode=TwoWay}" Height="Auto" Margin="45,0,45,0" TextWrapping="WrapWithOverflow" />
 				</StackPanel>
 

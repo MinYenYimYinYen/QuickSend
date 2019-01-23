@@ -12,7 +12,7 @@ namespace QuickSend
 	{
 		private void ThisAddIn_Startup(object sender, System.EventArgs e)
 		{
-
+			ThisApp = Application;
 		}
 
 		private void CurrentExplorer_SelectionChange()
@@ -30,7 +30,7 @@ namespace QuickSend
 			return new Ribbon();
 		}
 
-		public static Outlook.Explorer CurrentExplorer{ get;private set; }
+		public static Application ThisApp{ get;private set; }
 
 
 

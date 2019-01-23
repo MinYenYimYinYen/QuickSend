@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using QuickSend;
+using Microsoft.Office.Interop.Outlook;
+using Exception = System.Exception;
 
 namespace QuickSend_AppLayer.Templates
 {
@@ -72,10 +74,14 @@ namespace QuickSend_AppLayer.Templates
 
 				};
 
+		public MailItem NewMail { get; private set; }
+
 		public ICommand TemplateBuild => new Command((param) =>
 			{//Code to run
 				Subject = GetSubject();
 				Body = GetBody();
+				NewMail=(MailItem)ThisAddIn.ThisApp.CreateItem(OlItemType.olMailItem); 
+				NewMail.Display(true);
 			}, (param) =>
 			{//Code to check if button is active
 				try
@@ -116,20 +122,27 @@ namespace QuickSend_AppLayer.Templates
 			}
 		}
 
-		public static ICommand AssignSubject => new Command((param) =>
-		{//Code to run
-			//foreach(var explorer in ThisAddIn.ThisApp.Inspectors)
-			//{
-			//	var x = explorer.GetType();
-			//	//var t = ThisAddIn.ThisApp.Explorers.Count;
-			//}
-
-			string subject = param.ToString();
+		public ICommand AssignSubject => new Command((param) =>
+		{//Command Logic
+			NewMail.Subject = param.ToString();
 
 		}, (param) =>
 		{//Code to check if button is active
-			return true;
+			if (NewMail != null && param != null) return true;
+			else return false;
 		});
+
+		public ICommand AssignBody => new Command((param) =>
+		{//Command Logic
+			NewMail.Body = param.ToString();
+
+		}, (param) =>
+		{//Code to check if button is active
+			if (NewMail != null && param != null) return true;
+			else return false;
+		});
+
+
 
 
 		public event PropertyChangedEventHandler PropertyChanged;

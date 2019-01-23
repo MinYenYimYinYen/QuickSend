@@ -2,7 +2,7 @@
 <customUI onLoad="Ribbon_Load" xmlns="http://schemas.microsoft.com/office/2006/01/customui">
     <ribbon>
         <tabs>
-            <tab idMso="TabNewMailMessage">
+            <tab idMso="TabMail">
               <group id="group1" label="Luke" >
                 <button id="launchButton"
                         size="large"
