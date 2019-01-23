@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using quick
+using QuickSend;
 
 namespace QuickSend_AppLayer.Templates
 {
@@ -118,8 +118,12 @@ namespace QuickSend_AppLayer.Templates
 
 		public static ICommand AssignSubject => new Command((param) =>
 		{//Code to run
-			var x = ThisAddIn.ThisApp.ActiveExplorer();
-			var y = x.Selection.ToString();
+			//foreach(var explorer in ThisAddIn.ThisApp.Inspectors)
+			//{
+			//	var x = explorer.GetType();
+			//	//var t = ThisAddIn.ThisApp.Explorers.Count;
+			//}
+
 			string subject = param.ToString();
 
 		}, (param) =>

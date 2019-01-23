@@ -163,10 +163,15 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="Calc\Input.cs" />
+    <Compile Include="Calc\ProgramCalc.cs" />
     <Compile Include="EmailFunctions\Email.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Templates\Command.cs" />
+    <Compile Include="Templates\IEmailTemplate.cs" />
+    <Compile Include="Templates\WebLead_Initial.cs" />
     <Compile Include="UserInterface\Collections\EmailTemplates.cs" />
     <Compile Include="UserInterface\UI.xaml.cs">
       <DependentUpon>UI.xaml</DependentUpon>
@@ -194,7 +199,6 @@
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
     </Compile>
-    <None Include="QuickSend_1_TemporaryKey.pfx" />
     <None Include="QuickSend_TemporaryKey.pfx" />
     <None Include="ThisAddIn.Designer.xml">
       <DependentUpon>ThisAddIn.cs</DependentUpon>
@@ -210,12 +214,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\QuickSend_AppLayer\QuickSend_AppLayer.csproj">
-      <Project>{ef43d74a-b76f-4eff-9338-b4b86495fbe9}</Project>
-      <Name>QuickSend_AppLayer</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Page Include="UserInterface\UI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -229,10 +227,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>QuickSend_1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>QuickSend_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>95067B1139F647CB25C88D7091A4929A30A0C9D4</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>15AEACD281CB46F42C43FBE2EBB85B883D2C4F2E</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

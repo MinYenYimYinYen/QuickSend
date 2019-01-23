@@ -1,7 +1,8 @@
-﻿using QuickSend_AppLayer.Templates;
+﻿using Microsoft.Office.Interop.Outlook;
+using QuickSend_AppLayer.Templates;
 using System;
 using System.Windows.Input;
-
+using Outlook = Microsoft.Office.Interop.Outlook;
 
 //https://www.loginworks.com/blogs/create-vsto-add-outlook-2013-2016/
 
@@ -14,29 +15,25 @@ namespace QuickSend
 
 		}
 
-
-
+		private void CurrentExplorer_SelectionChange()
+		{
+			throw new NotImplementedException();
+		}
 
 		private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
 		{
 			// Note: Outlook no longer raises this event. If you have code that 
 			//    must run when Outlook shuts down, see https://go.microsoft.com/fwlink/?LinkId=506785
 		}
-
 		protected override Microsoft.Office.Core.IRibbonExtensibility CreateRibbonExtensibilityObject()
 		{
 			return new Ribbon();
 		}
 
-		public static ICommand AssignSubject => new Command((param) =>
-		{//Code to run
+		public static Outlook.Explorer CurrentExplorer{ get;private set; }
 
-			string subject = param.ToString();
 
-		}, (param) =>
-		{//Code to check if button is active
-			throw new NotImplementedException();
-		});
+
 
 
 		#region VSTO generated code
