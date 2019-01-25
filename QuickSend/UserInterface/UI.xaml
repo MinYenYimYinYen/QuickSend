@@ -1,4 +1,4 @@
-﻿<Window x:Class="OutlookFilters.Windows.UI" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:ol="clr-namespace:QuickSend.EmailFunctions" xmlns:col="clr-namespace:QuickSend.UserInterface.Collections" mc:Ignorable="d" Title="Quick Send" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" ResizeMode="CanResizeWithGrip" UseLayoutRounding="True" Height="300" Width="600">
+﻿<Window x:Class="OutlookFilters.Windows.UI" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:ol="clr-namespace:QuickSend.EmailFunctions" xmlns:col="clr-namespace:QuickSend.UserInterface.Collections" mc:Ignorable="d" Title="Quick Send" WindowStartupLocation="Manual" Left="0" Top="0" WindowStyle="ToolWindow" ResizeMode="CanResizeWithGrip" UseLayoutRounding="True" Height="450" Width="800">
 	<Window.Resources>
 		<col:EmailTemplates x:Key="EmailTemplates" />
 		<ol:Email x:Key="Email" />
@@ -167,7 +167,13 @@
 		<GroupBox Name="GroupBox_LeftPanel" Header="Select Template">
 			<StackPanel Name="StackPanel_LeftPanel" Grid.Column="0" Width="150">
 
-				<ListView Name="ListView_SelectTemplate" DataContext="{StaticResource EmailTemplates}" ItemsSource="{Binding}"></ListView>
+				<ListView Name="ListView_SelectTemplate" DataContext="{StaticResource EmailTemplates}" ItemsSource="{Binding}">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Path=Title}" />
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
 			</StackPanel>
 		</GroupBox>
 		<StackPanel Name="StackPanel_RightPanel" Grid.Column="1">
@@ -175,9 +181,10 @@
 						DataContext="{Binding ElementName=ListView_SelectTemplate, Path=SelectedValue}">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
 					<RowDefinition />
 				</Grid.RowDefinitions>
-				<GroupBox Header="Template Parameters">
+				<GroupBox Header="Template Parameters" Grid.Row="0">
 				<DockPanel MinHeight="75">					
 					<ItemsControl ItemsSource="{Binding Path=RequiredInputs}"
 												DockPanel.Dock="Top">
@@ -195,15 +202,25 @@
 							</DataTemplate>
 						</ItemsControl.ItemTemplate>
 					</ItemsControl>
+						<DockPanel DockPanel.Dock="Bottom" HorizontalAlignment="Stretch">
 					<Button Name="Button_GetTemplate" 
-									DockPanel.Dock="Bottom"
+									DockPanel.Dock="Left"
 									VerticalAlignment="Bottom"
 									HorizontalAlignment="Left"
 									Content="Get Template" 
 									Command="{Binding Path=TemplateBuild}" />
-				</DockPanel>
+						<Button Name="Button_DiscardEmail" DockPanel.Dock="Right" VerticalAlignment="Bottom" HorizontalAlignment="Right" Content="Discard Message" Command="{Binding Path=TemplateBuild}" />
+						</DockPanel>
+					</DockPanel>
 				</GroupBox>
-				<Grid Grid.Row="1">
+				<GroupBox Header="Attachment Options" Grid.Row="1" MinHeight="45">
+					<UniformGrid>
+						<Button Content="Attach Diagram" />
+						<CheckBox Content="Balloon Bucks" />
+						<ComboBox Text="Upsell Inserts" />
+					</UniformGrid>
+				</GroupBox>
+				<Grid Grid.Row="2">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="Auto" />
 						<ColumnDefinition />
