@@ -171,7 +171,9 @@
     </Compile>
     <Compile Include="Templates\Command.cs" />
     <Compile Include="Templates\IEmailTemplate.cs" />
-    <Compile Include="Templates\WebLead_Initial.cs" />
+    <Compile Include="Templates\AbstractTemplate.cs" />
+    <Compile Include="Templates\RenewalCancelReply.cs" />
+    <Compile Include="Templates\WebLeadTemplate.cs" />
     <Compile Include="UserInterface\Collections\EmailTemplates.cs" />
     <Compile Include="UserInterface\UI.xaml.cs">
       <DependentUpon>UI.xaml</DependentUpon>
