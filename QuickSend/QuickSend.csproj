@@ -165,12 +165,14 @@
   <ItemGroup>
     <Compile Include="Calc\Input.cs" />
     <Compile Include="Calc\ProgramCalc.cs" />
-    <Compile Include="EmailFunctions\Email.cs" />
+    <Compile Include="GlobalObjects\AbstractAttachment.cs" />
+    <Compile Include="GlobalObjects\Diagram.cs" />
     <Compile Include="GlobalObjects\Diagrams.cs" />
+    <Compile Include="Infrastructure\NewEmail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Templates\Command.cs" />
+    <Compile Include="Infrastructure\Command.cs" />
     <Compile Include="Templates\IEmailTemplate.cs" />
     <Compile Include="Templates\AbstractTemplate.cs" />
     <Compile Include="Templates\RenewalCancelReply.cs" />

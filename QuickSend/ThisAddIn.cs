@@ -31,6 +31,8 @@ namespace QuickSend
 		}
 
 		public static Application ThisApp{ get;private set; }
+	
+
 
 
 
