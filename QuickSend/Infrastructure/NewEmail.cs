@@ -14,14 +14,8 @@ namespace QuickSend.Infrastructure
 			Email = (MailItem)(ThisAddIn.ThisApp.CreateItem(OlItemType.olMailItem));
 		}
 
-		private void Subscribe()
-		{
-			Email.Unload += Email_Unload;
-		}
-		private void Email_Unload()
-		{
-			instance = null;
-		}
+		private void Subscribe() => Email.Unload += Email_Unload;
+		private void Email_Unload() => instance = null;
 
 		private static NewEmail instance;
 
@@ -35,18 +29,9 @@ namespace QuickSend.Infrastructure
 			return instance;
 		}
 
-		public static NewEmail Display()
-		{
-			var eml = Get();
-			eml.Email.Display();
-			return eml;
-		}
+		public static void Display() => Get().Email.Display();
 
-		public static void Kill()
-		{
-			
-			instance = null;
-		}
+		public static void Kill() => instance = null;
 
 		public MailItem Email { get; set; }
 
