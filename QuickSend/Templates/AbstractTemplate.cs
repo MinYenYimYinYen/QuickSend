@@ -10,6 +10,8 @@ using System.Windows.Input;
 using QuickSend;
 using Microsoft.Office.Interop.Outlook;
 using Exception = System.Exception;
+using QuickSend_AppLayer.Infrastructure;
+using QuickSend.Infrastructure;
 
 namespace QuickSend_AppLayer.Templates
 {
@@ -34,19 +36,11 @@ namespace QuickSend_AppLayer.Templates
 		public ICommand TemplateBuild => new Command((param) =>
 			{//Code to run
 				Subject = GetSubject();
-				Body = GetBody();
-				try
-				{
-					NewMail = (MailItem)QuickSend.ThisAddIn.ThisApp.CreateItem(OlItemType.olMailItem);
-					NewMail.Display(true);
-				}
-				catch (Exception)
-				{
-
-					NewMail.Close(OlInspectorClose.olDiscard);
-					NewMail = null;
-				}
+				Body = GetBody();								
 				
+				NewMail = NewEmail.Get().Email;
+				NewMail.Display(true);	
+
 			}, (param) =>
 			{//Code to check if button is active
 				return CanBuildTemplate();
