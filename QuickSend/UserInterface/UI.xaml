@@ -216,7 +216,20 @@
 							<TextBox Name="TextBox_Search" Text="{Binding Path=SearchString, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"   HorizontalAlignment="Stretch" />
 							<ListView Name="ListView_Diagrams" ItemsSource="{Binding}" SelectionMode="Single"
 												Height="200">
-
+								<ListView.ItemTemplate>
+									<DataTemplate>
+										<StackPanel Orientation="Horizontal">
+											<TextBlock Text="{Binding FileInfo.Name}">
+												<TextBlock.ContextMenu>
+													<ContextMenu>
+														<MenuItem Header="Attach"  Command="{Binding AttachCommand}"></MenuItem>
+													</ContextMenu>
+												</TextBlock.ContextMenu>
+											</TextBlock>
+										</StackPanel>
+										
+									</DataTemplate>
+								</ListView.ItemTemplate>
 							</ListView>
 						</StackPanel>
 					</GroupBox>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Office.Interop.Outlook;
+using QuickSend.Infrastructure;
 using QuickSend_AppLayer.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -30,12 +31,14 @@ namespace QuickSend.GlobalObjects
 
 		public virtual void Attach()
 		{
-			NewMail.Attachments.Add(FileInfo);
+			NewEmail.Get().Email.Attachments.Add(FileInfo.FullName,OlAttachmentType.olByValue);
 		}
 		public abstract bool CanAttach();
 
 		public virtual FileInfo FileInfo { get; set; }
 
-		public MailItem NewMail { get; private set; }
+		
+
+		
 	}
 }

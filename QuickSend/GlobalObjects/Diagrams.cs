@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace QuickSend.GlobalObjects
 {
-	public class Diagrams : ObservableCollection<FileInfo>, INotifyPropertyChanged
+	public class Diagrams : ObservableCollection<Diagram>, INotifyPropertyChanged
 	{
 		public Diagrams()
 		{
@@ -55,7 +55,10 @@ namespace QuickSend.GlobalObjects
 					.Where(f => f.Name.ToLower().Trim()
 					.Contains(SearchString.ToLower().Trim())))
 				{
-					Add(file);
+					Add(new Diagram
+					{
+						FileInfo = file
+					});
 				}
 			}
 		}
