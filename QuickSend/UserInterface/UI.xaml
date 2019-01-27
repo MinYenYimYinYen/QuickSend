@@ -252,7 +252,7 @@
 							</ItemsControl>
 							<DockPanel DockPanel.Dock="Bottom" HorizontalAlignment="Stretch">
 								<Button Name="Button_GetTemplate" DockPanel.Dock="Left" VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="Get Template" Command="{Binding Path=TemplateBuild}" />
-								<Button Name="Button_DiscardEmail" DockPanel.Dock="Right" VerticalAlignment="Bottom" HorizontalAlignment="Right" Content="Discard Message" Command="{Binding Path=TemplateBuild}" />
+								<Button Name="Button_DiscardEmail" DockPanel.Dock="Right" VerticalAlignment="Bottom" HorizontalAlignment="Right" Content="Discard Message" Command="{Binding Path=DiscardMessage}" />
 							</DockPanel>
 						</DockPanel>
 					</GroupBox>

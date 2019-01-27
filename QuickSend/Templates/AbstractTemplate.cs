@@ -12,6 +12,7 @@ using Microsoft.Office.Interop.Outlook;
 using Exception = System.Exception;
 using QuickSend_AppLayer.Infrastructure;
 using QuickSend.Infrastructure;
+using System.Windows;
 
 namespace QuickSend_AppLayer.Templates
 {
@@ -35,16 +36,41 @@ namespace QuickSend_AppLayer.Templates
 
 		public ICommand TemplateBuild => new Command((param) =>
 			{//Code to run
-				Subject = GetSubject();
-				Body = GetBody();								
-				
-				NewMail = NewEmail.Get().Email;
-				NewMail.Display(true);	
-
+				try
+				{
+					NewMail = NewEmail.Get().Email;
+					Subject = GetSubject();
+					Body = GetBody();
+					AssignSubject.Execute(Subject);
+					AssignBody.Execute(Body);
+					NewMail.Display(true);
+				}
+				catch (Exception ex)
+				{
+					if(ex.Message == "Outlook can't do this because a dialog box is open. Please close it and try again.")
+					{
+						MessageBox.Show("Close or discard the current email before creating a new one.");
+					}
+					else throw ex;
+				}
 			}, (param) =>
 			{//Code to check if button is active
-				return CanBuildTemplate();
+				if (NewEmail.CanDispose())
+				{ return false; }
+				
+				return CanBuildTemplate();	
 			});
+
+		public ICommand DiscardMessage => new Command((param) =>
+		{
+			NewEmail.Dispose();
+		}, (param) =>
+		{
+			if (NewEmail.CanDispose())
+			{ return true; }
+			else return false;
+		});
+
 
 		public abstract bool CanBuildTemplate();
 

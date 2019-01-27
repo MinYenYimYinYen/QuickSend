@@ -14,27 +14,40 @@ namespace QuickSend.Infrastructure
 			Email = (MailItem)(ThisAddIn.ThisApp.CreateItem(OlItemType.olMailItem));
 		}
 
-		private void Subscribe() => Email.Unload += Email_Unload;
-		private void Email_Unload() => instance = null;
-
 		private static NewEmail instance;
+		public MailItem Email { get; set; }
 
 		public static NewEmail Get()
 		{
 			if (instance == null)
 			{
 				instance = new NewEmail();
-				instance.Subscribe();
 			}
 			return instance;
 		}
 
 		public static void Display() => Get().Email.Display();
 
-		public static void Kill() => instance = null;
 
-		public MailItem Email { get; set; }
+		public static bool CanDispose()
+		{
+			try
+			{
+				var x = instance.Email.GetInspector;
+				return true;
+			}
+			catch (System.Exception)
+			{
+				return false;
+			}
+		}
 
-
+		internal static void Dispose()
+		{
+			var x = instance.Email.GetInspector;
+			instance.Email.GetInspector.Close(SaveMode: OlInspectorClose.olDiscard);
+			instance.Email.Close(SaveMode: OlInspectorClose.olDiscard);
+			instance = null;
+		}
 	}
 }
