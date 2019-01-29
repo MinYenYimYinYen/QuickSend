@@ -6,8 +6,9 @@
               <group id="group1" label="Luke" >
                 <button id="launchButton"
                         size="large"
-                        label="ButtonLabel"
-                        onAction="Launch"/>
+                        label="Quick Send"
+                        onAction="Launch"
+                        getImage="Button_GetImage"/>
               </group>
             </tab>
         </tabs>

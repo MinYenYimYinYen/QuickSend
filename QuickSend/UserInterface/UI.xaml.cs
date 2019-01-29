@@ -1,4 +1,5 @@
-﻿using QuickSend.UserInterface;
+﻿using QuickSend.GlobalObjects;
+using QuickSend.UserInterface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,9 +26,11 @@ namespace OutlookFilters.Windows
 		public UI()
 		{
 			InitializeComponent();
+
 		}
 
 
+		
 
 	}
 }

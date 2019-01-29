@@ -165,13 +165,23 @@
   <ItemGroup>
     <Compile Include="Calc\Input.cs" />
     <Compile Include="Calc\ProgramCalc.cs" />
-    <Compile Include="EmailFunctions\Email.cs" />
+    <Compile Include="GlobalObjects\AbstractAttachmentCollection.cs" />
+    <Compile Include="GlobalObjects\AbstractAttachment.cs" />
+    <Compile Include="GlobalObjects\AgroSheet.cs" />
+    <Compile Include="GlobalObjects\AgroSheets.cs" />
+    <Compile Include="GlobalObjects\Diagram.cs" />
+    <Compile Include="GlobalObjects\Diagrams.cs" />
+    <Compile Include="GlobalObjects\Insert.cs" />
+    <Compile Include="GlobalObjects\Inserts.cs" />
+    <Compile Include="Infrastructure\NewEmail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Templates\Command.cs" />
+    <Compile Include="Infrastructure\Command.cs" />
     <Compile Include="Templates\IEmailTemplate.cs" />
-    <Compile Include="Templates\WebLead_Initial.cs" />
+    <Compile Include="Templates\AbstractTemplate.cs" />
+    <Compile Include="Templates\RenewalCancelReply.cs" />
+    <Compile Include="Templates\WebLeadTemplate.cs" />
     <Compile Include="UserInterface\Collections\EmailTemplates.cs" />
     <Compile Include="UserInterface\UI.xaml.cs">
       <DependentUpon>UI.xaml</DependentUpon>
@@ -184,7 +194,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -192,6 +204,7 @@
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Ribbon.cs">
       <XmlRibbon>true</XmlRibbon>
@@ -219,6 +232,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\quicksand.jpg" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

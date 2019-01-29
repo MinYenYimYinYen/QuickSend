@@ -1,6 +1,8 @@
 ﻿using OutlookFilters.Windows;
+using QuickSend.Properties;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -59,6 +61,16 @@ namespace QuickSend
 		{
 			var x = new UI();
 			x.Show();
+		}
+
+		public string Button_GetLabel(Office.IRibbonControl control)
+		{
+			return "Quick Send";
+		}
+
+		public Bitmap Button_GetImage(Office.IRibbonControl control)
+		{
+			return Resources.quicksand;
 		}
 		#endregion
 

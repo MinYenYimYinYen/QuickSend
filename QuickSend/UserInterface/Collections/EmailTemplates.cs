@@ -1,4 +1,5 @@
-﻿using QuickSend_AppLayer.Templates;
+﻿using QuickSend.Templates;
+using QuickSend_AppLayer.Templates;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,7 +13,8 @@ namespace QuickSend.UserInterface.Collections
     {
 		public EmailTemplates()
 		{
-			this.Add(new WebLead_Initial());
+			this.Add(new WebLeadTemplate());
+			this.Add(new RenewalCancelReply());
 		}
     }
 }

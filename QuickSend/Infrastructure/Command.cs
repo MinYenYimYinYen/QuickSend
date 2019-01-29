@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace QuickSend_AppLayer.Templates
+namespace QuickSend_AppLayer.Infrastructure
 {
 	public class Command : ICommand
 	{
