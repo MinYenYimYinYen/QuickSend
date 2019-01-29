@@ -326,13 +326,7 @@
 					</GroupBox>
 
 				</DockPanel>
-				<GroupBox Header="Attachment Options" Grid.Row="1" MinHeight="45">
-					<UniformGrid>
-						<Button Content="Attach Diagram" />
-						<CheckBox Content="Balloon Bucks" />
-						<ComboBox Text="Upsell Inserts" />
-					</UniformGrid>
-				</GroupBox>
+
 				<Grid Grid.Row="2">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="Auto" />
