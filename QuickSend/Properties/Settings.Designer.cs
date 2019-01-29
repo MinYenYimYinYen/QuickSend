@@ -34,5 +34,29 @@ namespace QuickSend.Properties {
                 this["DiagramFolder"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string InsertFolder {
+            get {
+                return ((string)(this["InsertFolder"]));
+            }
+            set {
+                this["InsertFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string AgroSheetFolder {
+            get {
+                return ((string)(this["AgroSheetFolder"]));
+            }
+            set {
+                this["AgroSheetFolder"] = value;
+            }
+        }
     }
 }

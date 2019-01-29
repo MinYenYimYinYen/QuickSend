@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace QuickSend.GlobalObjects
 {
-	public class Diagrams : ObservableCollection<Diagram>, INotifyPropertyChanged
+	public abstract class AbstractAttachmentCollection<T> : ObservableCollection<T> where T : AbstractAttachment
 	{
-		public Diagrams()
+		public AbstractAttachmentCollection()
 		{
 			Refresh(string.Empty);
 		}
 
-		private void Refresh(string search)
+		protected void Refresh(string search)
 		{
 			Clear();
 			if (string.IsNullOrWhiteSpace(search))
@@ -34,26 +33,16 @@ namespace QuickSend.GlobalObjects
 					.Where(f => f.Name.ToLower().Trim()
 					.Contains(SearchString.ToLower().Trim())))
 				{
-					Add(new Diagram
-					{
-						FileInfo = file
-					});
+					Add(GetNew( file));
 				}
 			}
 		}
 
-		public string FolderPath
-		{
-			get => Settings.Default.DiagramFolder;
-			set
-			{
-				Settings.Default.DiagramFolder = value;
-				Settings.Default.Save();
-				Refresh(SearchString);
-			}
-		}
+		protected abstract T GetNew(FileInfo file);
 
-		private  string searchString="";
+		public abstract string FolderPath { get; set; }
+
+		private string searchString = "";
 		public string SearchString
 		{
 			get => searchString;
@@ -63,7 +52,5 @@ namespace QuickSend.GlobalObjects
 				Refresh(value);
 			}
 		}
-
-
 	}
 }

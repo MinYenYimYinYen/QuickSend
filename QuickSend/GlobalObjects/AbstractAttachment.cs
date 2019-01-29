@@ -17,8 +17,7 @@ namespace QuickSend.GlobalObjects
 
 		public AbstractAttachment()
 		{
-			this.Command = AttachCommand;
-		
+			this.Command = AttachCommand;		
 		}
 
 		public ICommand	AttachCommand=>new Command((param)=>
@@ -33,7 +32,11 @@ namespace QuickSend.GlobalObjects
 		{
 			NewEmail.Get().Email.Attachments.Add(FileInfo.FullName,OlAttachmentType.olByValue);
 		}
-		public abstract bool CanAttach();
+		public bool CanAttach()
+		{
+			if (NewEmail.CanDispose()) { return true; }
+			else return false;
+		}
 
 		public virtual FileInfo FileInfo { get; set; }
 

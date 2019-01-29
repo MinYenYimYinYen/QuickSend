@@ -13,7 +13,8 @@
 	<Window.Resources>
 		<col:EmailTemplates x:Key="EmailTemplates" />
 		<global:Diagrams x:Key="Diagrams" />
-
+		<global:AgroSheets x:Key="AgroSheets"/>
+		<global:Inserts x:Key="Inserts"/>
 		<!--Control colors.-->
 		<Color x:Key="WindowColor">#FFE8EDF9</Color>
 		<Color x:Key="ContentAreaColorLight">#FFC5CBF9</Color>
@@ -179,6 +180,9 @@
 			<Setter Property="Margin" Value="2" />
 		</Style>
 		<Style TargetType="ListView"></Style>
+		<Style x:Key="RightPanelHeight" TargetType="StackPanel">
+			<Setter Property="Height" Value="215"/>
+		</Style>
 		<!--#endregion-->
 	</Window.Resources>
 	<Grid Name="MainGrid">
@@ -205,15 +209,18 @@
 					<RowDefinition />
 				</Grid.RowDefinitions>
 				<DockPanel Grid.Row="0">
-					<GroupBox DockPanel.Dock="Right" MinWidth="75" MaxWidth="225">
-						<StackPanel DataContext="{StaticResource Diagrams}">
+					<TabControl DockPanel.Dock="Right" MinWidth="75" MaxWidth="225">
+						<TabItem Header="Diagram" Height="22" VerticalAlignment="Bottom">
+						<StackPanel DataContext="{StaticResource Diagrams}" Style="{StaticResource RightPanelHeight}">
 							<Expander Name="Expander_DiagramFolder" Header="{Binding Path=FolderPath, Mode=TwoWay}">
 								<Expander.ToolTip>
 									<TextBlock Text="{Binding Path=FolderPath}" />
 								</Expander.ToolTip>
 								<TextBox Text="{Binding Path=FolderPath, Mode=TwoWay}" />
 							</Expander>
-							<TextBox Name="TextBox_Search" Text="{Binding Path=SearchString, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"   HorizontalAlignment="Stretch" />
+							<TextBox Name="TextBox_DiagramSearch" 
+											 Text="{Binding Path=SearchString, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"   
+											 HorizontalAlignment="Stretch" />
 							<ListView Name="ListView_Diagrams" ItemsSource="{Binding}" SelectionMode="Single"
 												Height="200">
 								<ListView.ItemTemplate>
@@ -232,7 +239,68 @@
 								</ListView.ItemTemplate>
 							</ListView>
 						</StackPanel>
-					</GroupBox>
+						</TabItem>
+						<TabItem Header="Inserts">
+							<StackPanel DataContext="{StaticResource Inserts}"  Style="{StaticResource RightPanelHeight}">
+								<Expander Name="Expander_InsertFolder" Header="{Binding Path=FolderPath, Mode=TwoWay}">
+									<Expander.ToolTip>
+										<TextBlock Text="{Binding Path=FolderPath}" />
+									</Expander.ToolTip>
+									<TextBox Text="{Binding Path=FolderPath, Mode=TwoWay}" />
+								</Expander>
+								<TextBox Name="TextBox_InsertSearch" 
+											 Text="{Binding Path=SearchString, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"   
+											 HorizontalAlignment="Stretch" />
+								<ListView Name="ListView_Inserts" ItemsSource="{Binding}" SelectionMode="Single"
+												Height="200">
+									<ListView.ItemTemplate>
+										<DataTemplate>
+											<StackPanel Orientation="Horizontal">
+												<TextBlock Text="{Binding FileInfo.Name}">
+													<TextBlock.ContextMenu>
+														<ContextMenu>
+															<MenuItem Header="Attach"  Command="{Binding AttachCommand}"></MenuItem>
+														</ContextMenu>
+													</TextBlock.ContextMenu>
+												</TextBlock>
+											</StackPanel>
+
+										</DataTemplate>
+									</ListView.ItemTemplate>
+								</ListView>
+							</StackPanel>
+						</TabItem>
+						<TabItem Header="Agronomy" >
+							<StackPanel DataContext="{StaticResource AgroSheets}" Style="{StaticResource RightPanelHeight}">
+								<Expander Name="Expander_AgroSheetFolder" Header="{Binding Path=FolderPath, Mode=TwoWay}">
+									<Expander.ToolTip>
+										<TextBlock Text="{Binding Path=FolderPath}" />
+									</Expander.ToolTip>
+									<TextBox Text="{Binding Path=FolderPath, Mode=TwoWay}" />
+								</Expander>
+								<TextBox Name="TextBox_AgroSheetSearch" 
+											 Text="{Binding Path=SearchString, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"   
+											 HorizontalAlignment="Stretch" />
+								<ListView Name="ListView_AgroSheets" ItemsSource="{Binding}" SelectionMode="Single"
+												Height="200">
+									<ListView.ItemTemplate>
+										<DataTemplate>
+											<StackPanel Orientation="Horizontal">
+												<TextBlock Text="{Binding FileInfo.Name}">
+													<TextBlock.ContextMenu>
+														<ContextMenu>
+															<MenuItem Header="Attach"  Command="{Binding AttachCommand}"></MenuItem>
+														</ContextMenu>
+													</TextBlock.ContextMenu>
+												</TextBlock>
+											</StackPanel>
+
+										</DataTemplate>
+									</ListView.ItemTemplate>
+								</ListView>
+							</StackPanel>
+						</TabItem>
+					</TabControl>
 					<GroupBox Header="Template Parameters" Grid.Row="0" HorizontalAlignment="Stretch">
 						<DockPanel MinHeight="75">
 							<ItemsControl ItemsSource="{Binding Path=RequiredInputs}" DockPanel.Dock="Top">

@@ -165,9 +165,14 @@
   <ItemGroup>
     <Compile Include="Calc\Input.cs" />
     <Compile Include="Calc\ProgramCalc.cs" />
+    <Compile Include="GlobalObjects\AbstractAttachmentCollection.cs" />
     <Compile Include="GlobalObjects\AbstractAttachment.cs" />
+    <Compile Include="GlobalObjects\AgroSheet.cs" />
+    <Compile Include="GlobalObjects\AgroSheets.cs" />
     <Compile Include="GlobalObjects\Diagram.cs" />
     <Compile Include="GlobalObjects\Diagrams.cs" />
+    <Compile Include="GlobalObjects\Insert.cs" />
+    <Compile Include="GlobalObjects\Inserts.cs" />
     <Compile Include="Infrastructure\NewEmail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
