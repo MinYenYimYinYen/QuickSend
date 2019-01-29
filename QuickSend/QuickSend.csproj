@@ -199,6 +199,7 @@
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
     </Compile>
+    <None Include="QuickSend_2_TemporaryKey.pfx" />
     <None Include="QuickSend_TemporaryKey.pfx" />
     <None Include="ThisAddIn.Designer.xml">
       <DependentUpon>ThisAddIn.cs</DependentUpon>
@@ -227,10 +228,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>QuickSend_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>QuickSend_2_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>15AEACD281CB46F42C43FBE2EBB85B883D2C4F2E</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>6C4CFDD5B0EB378FADBE43B27978B09AF5953D4D</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
