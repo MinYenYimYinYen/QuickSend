@@ -173,7 +173,9 @@
     <Compile Include="GlobalObjects\Diagrams.cs" />
     <Compile Include="GlobalObjects\Insert.cs" />
     <Compile Include="GlobalObjects\Inserts.cs" />
+    <Compile Include="Infrastructure\AbstractEmail.cs" />
     <Compile Include="Infrastructure\NewEmail.cs" />
+    <Compile Include="Infrastructure\Reply.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -212,7 +214,6 @@
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
     </Compile>
-    <None Include="QuickSend_2_TemporaryKey.pfx" />
     <None Include="QuickSend_TemporaryKey.pfx" />
     <None Include="ThisAddIn.Designer.xml">
       <DependentUpon>ThisAddIn.cs</DependentUpon>
@@ -244,10 +245,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>QuickSend_2_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>QuickSend_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>6C4CFDD5B0EB378FADBE43B27978B09AF5953D4D</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>B931B77E1AE4B59990E0A3FDFA57D82623E5C885</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

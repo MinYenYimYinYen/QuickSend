@@ -319,8 +319,9 @@
 								</ItemsControl.ItemTemplate>
 							</ItemsControl>
 							<DockPanel DockPanel.Dock="Bottom" HorizontalAlignment="Stretch">
-								<Button Name="Button_GetTemplate" DockPanel.Dock="Left" VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="Get Template" Command="{Binding Path=TemplateBuild}" />
-								<Button Name="Button_DiscardEmail" DockPanel.Dock="Right" VerticalAlignment="Bottom" HorizontalAlignment="Right" Content="Discard Message" Command="{Binding Path=DiscardMessage}" />
+								<Button Name="Button_NewEmail" DockPanel.Dock="Left" VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="New Email" Command="{Binding Path=TemplateCreate}" />
+								<Button Name="Button_Reply" DockPanel.Dock="Left" VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="Reply" Command="{Binding Path=TemplateReply}" />
+								<Button Name="Button_DiscardEmail" DockPanel.Dock="Right" VerticalAlignment="Bottom" HorizontalAlignment="Right" Content="Discard Message" Command="{Binding Path=DiscardNewMessage}" />
 							</DockPanel>
 						</DockPanel>
 					</GroupBox>

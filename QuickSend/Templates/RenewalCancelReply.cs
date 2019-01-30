@@ -27,7 +27,7 @@ namespace QuickSend.Templates
 				}
 			};
 
-		public override bool CanBuildTemplate()
+		public override bool CanCreateTemplate()
 		{
 			return !string.IsNullOrWhiteSpace(Name);
 		}

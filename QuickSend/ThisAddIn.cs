@@ -13,11 +13,24 @@ namespace QuickSend
 		private void ThisAddIn_Startup(object sender, System.EventArgs e)
 		{
 			ThisApp = Application;
+			ActiveExplorer = ThisApp.ActiveExplorer();
+			ActiveExplorer.SelectionChange += CurrentExplorer_SelectionChange;
+			
 		}
 
 		private void CurrentExplorer_SelectionChange()
 		{
-			throw new NotImplementedException();
+			SelectedFolder = (Folder)ActiveExplorer.CurrentFolder;
+
+			if (ActiveExplorer.Selection.Count > 0)
+			{
+				object selected = ActiveExplorer.Selection[0];
+				if (selected is MailItem)
+				{
+					SelectedMail = (MailItem)selected;
+				}
+				else SelectedMail = null;
+			}
 		}
 
 		private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
@@ -30,8 +43,10 @@ namespace QuickSend
 			return new Ribbon();
 		}
 
-		public static Application ThisApp{ get;private set; }
-	
+		public static Application ThisApp { get; private set; }
+		public static Explorer ActiveExplorer { get; private set; }
+		public static Folder SelectedFolder { get; private set; }
+		public static MailItem SelectedMail { get; private set; }
 
 
 
@@ -46,8 +61,8 @@ namespace QuickSend
 		/// </summary>
 		private void InternalStartup()
 		{
-			this.Startup += new System.EventHandler(ThisAddIn_Startup);
-			this.Shutdown += new System.EventHandler(ThisAddIn_Shutdown);
+			Startup += new System.EventHandler(ThisAddIn_Startup);
+			Shutdown += new System.EventHandler(ThisAddIn_Shutdown);
 		}
 
 		#endregion

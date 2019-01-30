@@ -63,6 +63,12 @@ namespace QuickSend
 			x.Show();
 		}
 
+		public void Reply(Office.IRibbonControl control)
+		{
+			var x = new UI();
+			x.Show();
+		}
+
 		public string Button_GetLabel(Office.IRibbonControl control)
 		{
 			return "Quick Send";

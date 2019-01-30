@@ -9,6 +9,11 @@
                         label="Quick Send"
                         onAction="Launch"
                         getImage="Button_GetImage"/>
+                <button id="replyButton"
+                        size="large"
+                        label="Quick Reply"
+                        onAction="Reply"
+                        getImage="Button_GetImage"/>
               </group>
             </tab>
         </tabs>

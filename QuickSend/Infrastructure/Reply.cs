@@ -7,21 +7,25 @@ using System.Threading.Tasks;
 
 namespace QuickSend.Infrastructure
 {
-	public class NewEmail
+	public class Reply
 	{
-		private NewEmail()
+		private Reply()
 		{
-			Message = (MailItem)(ThisAddIn.ThisApp.CreateItem(OlItemType.olMailItem));
+			if(ThisAddIn.SelectedMail != null)
+			{
+				Message = ((MailItem)(ThisAddIn.SelectedMail)).Reply();
+			}
+			
 		}
 
-		private static NewEmail instance;
+		private static Reply instance;
 		public MailItem Message { get; set; }
 
-		public static NewEmail Get()
+		public static Reply Get()
 		{
 			if (instance == null)
 			{
-				instance = new NewEmail();
+				instance = new Reply();
 			}
 			return instance;
 		}

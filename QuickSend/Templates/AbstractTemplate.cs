@@ -32,18 +32,20 @@ namespace QuickSend_AppLayer.Templates
 
 		public abstract ObservableCollection<Input> RequiredInputs { get; }
 
-		public MailItem NewMail { get; private set; }
+		public MailItem Message { get; private set; }
 
-		public ICommand TemplateBuild => new Command((param) =>
+		public ICommand TemplateCreate => new Command((param) =>
 			{//Code to run
 				try
 				{
-					NewMail = NewEmail.Get().Email;
+					Message = NewEmail.Get().Message;
 					Subject = GetSubject();
 					Body = GetBody();
 					AssignSubject.Execute(Subject);
 					AssignBody.Execute(Body);
-					NewMail.Display(true);
+					Message.Display(true);
+
+					
 				}
 				catch (Exception ex)
 				{
@@ -58,10 +60,10 @@ namespace QuickSend_AppLayer.Templates
 				if (NewEmail.CanDispose())
 				{ return false; }
 				
-				return CanBuildTemplate();	
+				return CanCreateTemplate();	
 			});
 
-		public ICommand DiscardMessage => new Command((param) =>
+		public ICommand DiscardNewMessage => new Command((param) =>
 		{
 			NewEmail.Dispose();
 		}, (param) =>
@@ -72,7 +74,7 @@ namespace QuickSend_AppLayer.Templates
 		});
 
 
-		public abstract bool CanBuildTemplate();
+		public abstract bool CanCreateTemplate();
 
 		private string subject;
 		public string Subject
@@ -98,26 +100,49 @@ namespace QuickSend_AppLayer.Templates
 
 		public ICommand AssignSubject => new Command((param) =>
 		{//Command Logic
-			NewMail.Subject = param.ToString();
+			Message.Subject = param.ToString();
 
 		}, (param) =>
 		{//Code to check if button is active
-			if (NewMail != null && param != null) return true;
+			if (Message != null && param != null) return true;
 			else return false;
 		});
 
 		public ICommand AssignBody => new Command((param) =>
 		{//Command Logic
-			NewMail.Body = param.ToString();
+			Message.Body = param.ToString();
 
 		}, (param) =>
 		{//Code to check if button is active
-			if (NewMail != null && param != null) return true;
+			if (Message != null && param != null) return true;
 			else return false;
 		});
 
+		public ICommand TemplateReply  => new Command((param) =>
+		{//Code to run
+			try
+			{
+				Message = Reply.Get().Message;
+				Body = GetBody();
+				Body = Body + Environment.NewLine + Message.Body;
+				AssignBody.Execute(Body);
+				Message.Display(true);
+			}
+			catch (Exception ex)
+			{
+				if (ex.Message == "Outlook can't do this because a dialog box is open. Please close it and try again.")
+				{
+					MessageBox.Show("Close or discard the current email before creating a new one.");
+				}
+				else throw ex;
+			}
+		}, (param) =>
+		{//Code to check if button is active
+			if (NewEmail.CanDispose())
+			{ return false; }
 
-
+			return CanCreateTemplate();
+		});
 
 		public event PropertyChangedEventHandler PropertyChanged;
 		private void OnPropertyChanged(string name)

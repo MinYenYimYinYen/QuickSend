@@ -30,7 +30,7 @@ namespace QuickSend.GlobalObjects
 
 		public virtual void Attach()
 		{
-			NewEmail.Get().Email.Attachments.Add(FileInfo.FullName,OlAttachmentType.olByValue);
+			NewEmail.Get().Message.Attachments.Add(FileInfo.FullName,OlAttachmentType.olByValue);
 		}
 		public bool CanAttach()
 		{

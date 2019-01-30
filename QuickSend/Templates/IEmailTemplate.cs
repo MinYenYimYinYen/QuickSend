@@ -14,7 +14,8 @@ namespace QuickSend_AppLayer.Templates
 		string GetSubject();
 		string GetBody();
 		ObservableCollection<Input> RequiredInputs { get;  }
-		ICommand TemplateBuild { get; }
+		ICommand TemplateCreate { get; }
+		ICommand TemplateReply { get; }
 
 	}
 }
