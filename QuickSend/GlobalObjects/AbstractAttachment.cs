@@ -34,7 +34,7 @@ namespace QuickSend.GlobalObjects
 		}
 		public bool CanAttach()
 		{
-			if (NewEmail.CanDispose()) { return true; }
+			if (NewEmail.Get().CanDispose()) { return true; }
 			else return false;
 		}
 

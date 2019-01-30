@@ -57,7 +57,7 @@ namespace QuickSend_AppLayer.Templates
 				}
 			}, (param) =>
 			{//Code to check if button is active
-				if (NewEmail.CanDispose())
+				if (NewEmail.Get().CanDispose()||Reply.Get().CanDispose())
 				{ return false; }
 				
 				return CanCreateTemplate();	
@@ -65,10 +65,15 @@ namespace QuickSend_AppLayer.Templates
 
 		public ICommand DiscardNewMessage => new Command((param) =>
 		{
-			NewEmail.Dispose();
+			var newMail = NewEmail.Get();
+			if(newMail.CanDispose()) newMail.Dispose();
+
+			var reply = Reply.Get();
+			if (reply.CanDispose()) reply.Dispose();
+
 		}, (param) =>
 		{
-			if (NewEmail.CanDispose())
+			if (NewEmail.Get().CanDispose()||Reply.Get().CanDispose())
 			{ return true; }
 			else return false;
 		});
@@ -138,7 +143,7 @@ namespace QuickSend_AppLayer.Templates
 			}
 		}, (param) =>
 		{//Code to check if button is active
-			if (NewEmail.CanDispose())
+			if (NewEmail.Get().CanDispose())
 			{ return false; }
 
 			return CanCreateTemplate();

@@ -24,7 +24,7 @@ namespace QuickSend
 
 			if (ActiveExplorer.Selection.Count > 0)
 			{
-				object selected = ActiveExplorer.Selection[0];
+				object selected = ActiveExplorer.Selection[1];
 				if (selected is MailItem)
 				{
 					SelectedMail = (MailItem)selected;

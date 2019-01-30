@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace QuickSend.Infrastructure
 {
-	public class NewEmail
+	public class NewEmail:AbstractEmail
 	{
 		private NewEmail()
 		{
@@ -15,7 +15,6 @@ namespace QuickSend.Infrastructure
 		}
 
 		private static NewEmail instance;
-		public MailItem Message { get; set; }
 
 		public static NewEmail Get()
 		{
@@ -26,28 +25,5 @@ namespace QuickSend.Infrastructure
 			return instance;
 		}
 
-		public static void Display() => Get().Message.Display();
-
-
-		public static bool CanDispose()
-		{
-			try
-			{
-				var x = instance.Message.GetInspector;
-				return true;
-			}
-			catch (System.Exception)
-			{
-				return false;
-			}
-		}
-
-		internal static void Dispose()
-		{
-			var x = instance.Message.GetInspector;
-			instance.Message.GetInspector.Close(SaveMode: OlInspectorClose.olDiscard);
-			instance.Message.Close(SaveMode: OlInspectorClose.olDiscard);
-			instance = null;
-		}
 	}
 }
