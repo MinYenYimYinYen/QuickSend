@@ -35,7 +35,7 @@ namespace QuickSend.Templates
 		public override string GetBody()
 		{
 			return $"Hello {Name},{Environment.NewLine}" +
-				$"I want to confirm that I've received your request to cancel your account. I'll go ahead and cancel your account.  I was hoping to get more detail on why you are cancelling. Was there a problem with the service, or is it a price issue? In any case, it may benefit us both if we could talk about it. We'd love the chance to correct any issues we have and we don't mind making a deal.{Environment.NewLine}" +
+				$"I want to confirm that I've received your request to cancel your account. I'll go ahead and cancel your account.  I was hoping to get more detail on why you are cancelling. Was there a problem with the service, or is it a price issue? In any case, it may benefit us both if we could talk about it. We'd love the chance to correct any issues we have and we don't mind negotiating on price.{Environment.NewLine}" +
 		$"We appreciate your business. Feel free to contact me if there is anything you think I can help you with.{Environment.NewLine}" +
 	$"Sincerely,{Environment.NewLine}" +
  $"Darla";
