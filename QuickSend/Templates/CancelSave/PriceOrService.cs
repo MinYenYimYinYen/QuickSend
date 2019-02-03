@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace QuickSend.Templates
 {
-	public class RenewalCancelReply : AbstractTemplate
+	public class PriceOrService : AbstractTemplate
 	{
 
 		public string Name { get; set; }
 
 		public override string Title => "Renewal: Cancel Reply";
 
-		public override ObservableCollection<Input> RequiredInputs =>
+		public override ObservableCollection<Input> Inputs =>
 			new ObservableCollection<Input>
 			{
 				new Input

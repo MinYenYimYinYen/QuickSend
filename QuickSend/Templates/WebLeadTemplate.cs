@@ -13,6 +13,10 @@ namespace QuickSend.Templates
 	{
 		public string PricePerApp { get; set; }
 		public string Name { get; set; }
+		public double PPYPercent { get; set; }
+		public double TaxPercent { get; set; }
+		public int AppCount { get; set; }
+		public	int FreeAppCount { get; set; }
 
 		public override string GetSubject()
 		{
@@ -24,10 +28,10 @@ namespace QuickSend.Templates
 			ProgramCalc calc = new ProgramCalc
 			{
 				PricePerApp = Convert.ToDouble(PricePerApp),
-				PrePayPerc = .05,
-				TaxPercent = .07,
-				AppCount = 6,
-				FreeAppCount = 1
+				PrePayPerc = PPYPercent/100,
+				TaxPercent = TaxPercent/100,
+				AppCount = AppCount,
+				FreeAppCount = FreeAppCount
 			};
 
 			StringBuilder str = new StringBuilder();
@@ -42,7 +46,7 @@ namespace QuickSend.Templates
 
 		public override string Title => "WebLead: Initial Response";
 
-		public override ObservableCollection<Input> RequiredInputs => 
+		public override ObservableCollection<Input> Inputs => 
 			new ObservableCollection<Input>
 			{
 				new Input
@@ -57,7 +61,35 @@ namespace QuickSend.Templates
 					Property =GetType().GetProperty(nameof(Name)),
 					Label ="Name"
 				},
+				new Input
+				{
+					Instance =this,
+					Property =GetType().GetProperty(nameof(PPYPercent)),
+					Label ="Prepay"
+				},
+				new Input
+				{
+					Instance =this,
+					Property =GetType().GetProperty(nameof(TaxPercent)),
+					Label ="Tax Rate"
+				},
+				new Input
+				{
+					Instance =this,
+					Property =GetType().GetProperty(nameof(AppCount)),
+					Label ="App Count"
+				},
+				new Input
+				{
+					Instance =this,
+					Property =GetType().GetProperty(nameof(FreeAppCount)),
+					Label ="Free Apps"
+				},
+
+
+
 			};
+
 
 		public override bool CanBuildTemplate()
 		{

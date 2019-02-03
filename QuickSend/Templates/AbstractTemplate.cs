@@ -1,4 +1,8 @@
-﻿using QuickSend_AppLayer.Calc;
+﻿using Microsoft.Office.Interop.Outlook;
+using QuickSend;
+using QuickSend.Infrastructure;
+using QuickSend_AppLayer.Calc;
+using QuickSend_AppLayer.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,31 +10,21 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
-using QuickSend;
-using Microsoft.Office.Interop.Outlook;
-using Exception = System.Exception;
-using QuickSend_AppLayer.Infrastructure;
-using QuickSend.Infrastructure;
 using System.Windows;
+using System.Windows.Input;
+using Exception = System.Exception;
 
 namespace QuickSend_AppLayer.Templates
 {
 	public abstract class AbstractTemplate : IEmailTemplate, INotifyPropertyChanged
 	{
-
-
-
-
 		public abstract string GetSubject();
 
+		public abstract string GetBody();
 
-	public abstract string GetBody();
+		public abstract string Title { get; }
 
-
-		public abstract  string Title { get;  }
-
-		public abstract ObservableCollection<Input> RequiredInputs { get; }
+		public abstract ObservableCollection<Input> Inputs { get; }
 
 		public MailItem NewMail { get; private set; }
 
@@ -47,18 +41,21 @@ namespace QuickSend_AppLayer.Templates
 				}
 				catch (Exception ex)
 				{
-					if(ex.Message == "Outlook can't do this because a dialog box is open. Please close it and try again.")
+					if (ex.Message == "Outlook can't do this because a dialog box is open. Please close it and try again.")
 					{
 						MessageBox.Show("Close or discard the current email before creating a new one.");
 					}
-					else throw ex;
+					else
+					{
+						throw ex;
+					}
 				}
 			}, (param) =>
 			{//Code to check if button is active
 				if (NewEmail.CanDispose())
 				{ return false; }
-				
-				return CanBuildTemplate();	
+
+				return CanBuildTemplate();
 			});
 
 		public ICommand DiscardMessage => new Command((param) =>
@@ -68,7 +65,10 @@ namespace QuickSend_AppLayer.Templates
 		{
 			if (NewEmail.CanDispose())
 			{ return true; }
-			else return false;
+			else
+			{
+				return false;
+			}
 		});
 
 
@@ -102,8 +102,14 @@ namespace QuickSend_AppLayer.Templates
 
 		}, (param) =>
 		{//Code to check if button is active
-			if (NewMail != null && param != null) return true;
-			else return false;
+			if (NewMail != null && param != null)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		});
 
 		public ICommand AssignBody => new Command((param) =>
@@ -112,15 +118,21 @@ namespace QuickSend_AppLayer.Templates
 
 		}, (param) =>
 		{//Code to check if button is active
-			if (NewMail != null && param != null) return true;
-			else return false;
+			if (NewMail != null && param != null)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		});
 
 
 
 
 		public event PropertyChangedEventHandler PropertyChanged;
-		private void OnPropertyChanged(string name)
+		protected void OnPropertyChanged(string name)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 		}

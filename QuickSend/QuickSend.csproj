@@ -178,11 +178,16 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Infrastructure\Command.cs" />
+    <Compile Include="Templates\CancelSave\ExtraToRemove.cs" />
+    <Compile Include="Templates\CancelSave\PriceObjection.cs" />
+    <Compile Include="Templates\CancelSave\PriceObjectionInput.cs" />
     <Compile Include="Templates\IEmailTemplate.cs" />
     <Compile Include="Templates\AbstractTemplate.cs" />
-    <Compile Include="Templates\RenewalCancelReply.cs" />
+    <Compile Include="Templates\CancelSave\PriceOrService.cs" />
+    <Compile Include="Templates\Interfaces\IProgramQuote.cs" />
     <Compile Include="Templates\WebLeadTemplate.cs" />
     <Compile Include="UserInterface\Collections\EmailTemplates.cs" />
+    <Compile Include="UserInterface\InputTemplateSelector.cs" />
     <Compile Include="UserInterface\UI.xaml.cs">
       <DependentUpon>UI.xaml</DependentUpon>
     </Compile>
@@ -212,7 +217,6 @@
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
     </Compile>
-    <None Include="QuickSend_2_TemporaryKey.pfx" />
     <None Include="QuickSend_TemporaryKey.pfx" />
     <None Include="ThisAddIn.Designer.xml">
       <DependentUpon>ThisAddIn.cs</DependentUpon>
@@ -236,6 +240,7 @@
   <ItemGroup>
     <Content Include="Resources\quicksand.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -244,10 +249,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>QuickSend_2_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>QuickSend_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>6C4CFDD5B0EB378FADBE43B27978B09AF5953D4D</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>ED4D54A67F6A952491CEAF433620446F58EC6D8C</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

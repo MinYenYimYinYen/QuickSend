@@ -5,6 +5,8 @@
 				xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  
 				xmlns:global="clr-namespace:QuickSend.GlobalObjects"
 				xmlns:col="clr-namespace:QuickSend.UserInterface.Collections" 
+				xmlns:calc="clr-namespace:QuickSend_AppLayer.Calc"
+				xmlns:ui ="clr-namespace:QuickSend.UserInterface"
 				mc:Ignorable="d" Title="Quick Send" 
 				WindowStartupLocation="Manual" Left="0" Top="0" 
 				WindowStyle="ToolWindow" ResizeMode="CanResizeWithGrip" 
@@ -211,34 +213,34 @@
 				<DockPanel Grid.Row="0">
 					<TabControl DockPanel.Dock="Right" MinWidth="75" MaxWidth="225">
 						<TabItem Header="Diagram" Height="22" VerticalAlignment="Bottom">
-						<StackPanel DataContext="{StaticResource Diagrams}" Style="{StaticResource RightPanelHeight}">
-							<Expander Name="Expander_DiagramFolder" Header="{Binding Path=FolderPath, Mode=TwoWay}">
-								<Expander.ToolTip>
-									<TextBlock Text="{Binding Path=FolderPath}" />
-								</Expander.ToolTip>
-								<TextBox Text="{Binding Path=FolderPath, Mode=TwoWay}" />
-							</Expander>
-							<TextBox Name="TextBox_DiagramSearch" 
+							<StackPanel DataContext="{StaticResource Diagrams}" Style="{StaticResource RightPanelHeight}">
+								<Expander Name="Expander_DiagramFolder" Header="{Binding Path=FolderPath, Mode=TwoWay}">
+									<Expander.ToolTip>
+										<TextBlock Text="{Binding Path=FolderPath}" />
+									</Expander.ToolTip>
+									<TextBox Text="{Binding Path=FolderPath, Mode=TwoWay}" />
+								</Expander>
+								<TextBox Name="TextBox_DiagramSearch" 
 											 Text="{Binding Path=SearchString, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"   
 											 HorizontalAlignment="Stretch" />
-							<ListView Name="ListView_Diagrams" ItemsSource="{Binding}" SelectionMode="Single"
+								<ListView Name="ListView_Diagrams" ItemsSource="{Binding}" SelectionMode="Single"
 												Height="200">
-								<ListView.ItemTemplate>
-									<DataTemplate>
-										<StackPanel Orientation="Horizontal">
-											<TextBlock Text="{Binding FileInfo.Name}">
-												<TextBlock.ContextMenu>
-													<ContextMenu>
-														<MenuItem Header="Attach"  Command="{Binding AttachCommand}"></MenuItem>
-													</ContextMenu>
-												</TextBlock.ContextMenu>
-											</TextBlock>
-										</StackPanel>
-										
-									</DataTemplate>
-								</ListView.ItemTemplate>
-							</ListView>
-						</StackPanel>
+									<ListView.ItemTemplate>
+										<DataTemplate>
+											<StackPanel Orientation="Horizontal">
+												<TextBlock Text="{Binding FileInfo.Name}">
+													<TextBlock.ContextMenu>
+														<ContextMenu>
+															<MenuItem Header="Attach"  Command="{Binding AttachCommand}"></MenuItem>
+														</ContextMenu>
+													</TextBlock.ContextMenu>
+												</TextBlock>
+											</StackPanel>
+
+										</DataTemplate>
+									</ListView.ItemTemplate>
+								</ListView>
+							</StackPanel>
 						</TabItem>
 						<TabItem Header="Inserts">
 							<StackPanel DataContext="{StaticResource Inserts}"  Style="{StaticResource RightPanelHeight}">
@@ -303,7 +305,20 @@
 					</TabControl>
 					<GroupBox Header="Template Parameters" Grid.Row="0" HorizontalAlignment="Stretch">
 						<DockPanel MinHeight="75">
-							<ItemsControl ItemsSource="{Binding Path=RequiredInputs}" DockPanel.Dock="Top">
+							<ItemsControl ItemsSource="{Binding Path=Inputs}" DockPanel.Dock="Top">
+								<ItemsControl.Resources>
+									<ui:InputTemplateSelector x:Key="InputTemplateSelector" />
+									<DataTemplate x:Key="StringDataTemplate" DataType="{x:Type calc:Input}">
+										<StackPanel Orientation="Horizontal">
+											<Label Content="{Binding Path=Label}" />
+											<TextBox Text="{Binding Path=Value}"/>
+										</StackPanel>
+							
+									</DataTemplate>
+									<DataTemplate x:Key="BoolDataTemplate" DataType="{x:Type calc:Input}">
+										<CheckBox IsChecked="{Binding Path=Value}" Content="{Binding Path=Label}"/>
+									</DataTemplate>
+								</ItemsControl.Resources>
 								<ItemsControl.ItemsPanel>
 									<ItemsPanelTemplate>
 										<WrapPanel />
@@ -312,8 +327,11 @@
 								<ItemsControl.ItemTemplate>
 									<DataTemplate>
 										<UniformGrid>
-											<Label Content="{Binding Path=Label}" />
-											<TextBox Text="{Binding Path=Value}" MaxWidth="150" />
+											<Border Visibility="{Binding Path=Visibility}">
+												<StackPanel>
+													<ContentControl Content="{Binding}" ContentTemplateSelector="{DynamicResource InputTemplateSelector }" />
+												</StackPanel>
+											</Border>
 										</UniformGrid>
 									</DataTemplate>
 								</ItemsControl.ItemTemplate>

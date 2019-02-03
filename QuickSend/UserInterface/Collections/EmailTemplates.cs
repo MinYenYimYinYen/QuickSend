@@ -1,4 +1,5 @@
 ﻿using QuickSend.Templates;
+using QuickSend.Templates.CancelSave;
 using QuickSend_AppLayer.Templates;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,8 @@ namespace QuickSend.UserInterface.Collections
 		public EmailTemplates()
 		{
 			this.Add(new WebLeadTemplate());
-			this.Add(new RenewalCancelReply());
+			this.Add(new PriceOrService());
+			this.Add(new PriceObjection());
 		}
     }
 }
