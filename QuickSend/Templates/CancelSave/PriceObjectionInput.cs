@@ -10,7 +10,7 @@ using Vis = System.Windows.Visibility;
 
 namespace QuickSend.Templates.CancelSave
 {
-	public class PriceObjectionInput : Input
+	public class PriceObjectionInput: Input
 	{
 		public PriceObjectionInput(PriceObjection instance, PropertyInfo propertyInfo, string label) : base(instance, propertyInfo, label)
 		{
@@ -20,26 +20,26 @@ namespace QuickSend.Templates.CancelSave
 
 		private void Instance_OfferRemoveServicesChanged(object sender, Vis e)
 		{
-			if (MasterInput != null && MasterInput.Property.Name == nameof(PriceObjection.OfferRemoveSevices))
-			{
-				if ((bool)MasterInput.Value == true)
-				{
-					this.Visibility = Vis.Visible.ToString();
-				}
-				else { this.Visibility = Vis.Collapsed.ToString(); }
-			}
+			//if (MasterInput != null && MasterInput.Property.Name == nameof(PriceObjection.OfferRemoveSevices))
+			//{
+			//	if ((bool)MasterInput.Value == true)
+			//	{
+			//		this.Visibility = Vis.Visible.ToString();
+			//	}
+			//	else { this.Visibility = Vis.Collapsed.ToString(); }
+			//}
 		}
 
 		private void Instance_OfferLowerPriceChanged(object sender, Visibility e)
 		{
-			if (MasterInput != null && MasterInput.Property.Name == nameof(PriceObjection.OfferLowerPrice))
-			{
-				if ((bool)MasterInput.Value == true)
-				{
-					this.Visibility = Vis.Visible.ToString();
-				}
-				else { this.Visibility = Vis.Collapsed.ToString(); }
-			}
+			//if (MasterInput != null && MasterInput.Property.Name == nameof(PriceObjection.OfferLowerPrice))
+			//{
+			//	if ((bool)MasterInput.Value == true)
+			//	{
+			//		this.Visibility = Vis.Visible.ToString();
+			//	}
+			//	else { this.Visibility = Vis.Collapsed.ToString(); }
+			//}
 		}
 	}
 }

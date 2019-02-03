@@ -1,4 +1,5 @@
-﻿using QuickSend.Templates.CancelSave;
+﻿using QuickSend.Calc;
+using QuickSend.Templates.CancelSave;
 using QuickSend_AppLayer.Templates;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,24 @@ using Vis = System.Windows.Visibility;
 
 namespace QuickSend_AppLayer.Calc
 {
-	public class Input : INotifyPropertyChanged
+	public class Input<T> : Input where T:Type
+	{
+		public Input(PriceObjection instance, PropertyInfo propertyInfo, string label) : base(instance, propertyInfo, label)
+		{
+		}
+		public Input()		{		}
+
+		public T Value
+		{
+			get => Property.GetValue(Instance) as T;
+			set => Property.SetValue(Instance, value);
+		}
+
+		public Input<T> MasterInput { get; set; }
+	}
+
+
+	public  class Input: INotifyPropertyChanged 
 	{
 
 		private  string _visibility;
@@ -23,7 +41,6 @@ namespace QuickSend_AppLayer.Calc
 			Instance = instance;
 			Property = propertyInfo;
 			Label = label;
-			
 		}
 
 		private void Instance_OfferLowerPriceChanged(object sender, Vis e)
@@ -31,19 +48,11 @@ namespace QuickSend_AppLayer.Calc
 			Visibility = e.ToString();
 		}
 
-		public Input MasterInput { get; set; }
+
 		public IEmailTemplate Instance { get; set; }
 		public PropertyInfo Property { get; set; }
 		public string Label { get; set; }
-		//public bool IsVisible { get => _isVisible;
-		//	set
-		//	{
-		//		_isVisible = value;
-		//		OnPropertyChanged(nameof(Visibility));
-		//	}
-		//}
 
-		//public string Visibility => IsVisible ? Vis.Visible.ToString() : Vis.Collapsed.ToString();
 
 		public string Visibility
 		{
@@ -55,11 +64,7 @@ namespace QuickSend_AppLayer.Calc
 		}
 
 
-		public object Value
-		{
-			get => Property.GetValue(Instance);
-			set => Property.SetValue(Instance, value);
-		}
+
 
 		public event PropertyChangedEventHandler PropertyChanged;
 		protected void OnPropertyChanged(string propertyName)

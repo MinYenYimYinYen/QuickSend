@@ -109,21 +109,21 @@ namespace QuickSend.Templates.CancelSave
 				PriceObjectionInput servicesToRemove = new PriceObjectionInput
 					(this, GetType().GetProperty(nameof(ServicesToRemove)), "Services To Remove")
 				{
-					MasterInput = removeServicesInput,
+					//MasterInput = removeServicesInput,
 					Visibility= Visibility.Collapsed.ToString()
 				};
 
 				PriceObjectionInput appPriceReduction = new PriceObjectionInput
 					(this, GetType().GetProperty(nameof(AppPriceReduction)), "Reduction Amount")
 				{
-					MasterInput = offerLowerPrice,
+					//MasterInput = offerLowerPrice,
 					Visibility = Visibility.Collapsed.ToString()
 				};
 
 				PriceObjectionInput appCount = new PriceObjectionInput
 					(this, GetType().GetProperty(nameof(AppCount)), "App Count")
 				{
-					MasterInput = offerLowerPrice,
+					//MasterInput = offerLowerPrice,
 					Visibility = Visibility.Collapsed.ToString()
 				};
 

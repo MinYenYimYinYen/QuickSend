@@ -163,6 +163,7 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="Calc\AbstractInput.cs" />
     <Compile Include="Calc\Input.cs" />
     <Compile Include="Calc\ProgramCalc.cs" />
     <Compile Include="GlobalObjects\AbstractAttachmentCollection.cs" />
@@ -178,7 +179,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Infrastructure\Command.cs" />
-    <Compile Include="Templates\CancelSave\ExtraToRemove.cs" />
+    <Compile Include="Templates\CancelSave\ServiceToRemove.cs" />
     <Compile Include="Templates\CancelSave\PriceObjection.cs" />
     <Compile Include="Templates\CancelSave\PriceObjectionInput.cs" />
     <Compile Include="Templates\IEmailTemplate.cs" />

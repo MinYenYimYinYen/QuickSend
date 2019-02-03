@@ -308,20 +308,37 @@
 							<ItemsControl ItemsSource="{Binding Path=Inputs}" DockPanel.Dock="Top">
 								<ItemsControl.Resources>
 									<ui:InputTemplateSelector x:Key="InputTemplateSelector" />
+									
 									<DataTemplate x:Key="StringDataTemplate" DataType="{x:Type calc:Input}">
 										<StackPanel Orientation="Horizontal">
 											<Label Content="{Binding Path=Label}" />
-											<TextBox Text="{Binding Path=Value}"/>
-										</StackPanel>
-							
+											<TextBox Text="{Binding Path=Value}" Margin="5,0,0,0"/>
+										</StackPanel>							
 									</DataTemplate>
+									
 									<DataTemplate x:Key="BoolDataTemplate" DataType="{x:Type calc:Input}">
 										<CheckBox IsChecked="{Binding Path=Value}" Content="{Binding Path=Label}"/>
 									</DataTemplate>
+
+									<DataTemplate x:Key="OCServiceToRemoveDataTemplate" DataType="{x:Type calc:Input}">
+										<Grid>
+											<Grid.RowDefinitions>
+												<RowDefinition Height="Auto"/>
+												<RowDefinition/>
+											</Grid.RowDefinitions>
+											<GroupBox Grid.Row="0" Header="Remove a service">
+												<StackPanel Orientation="Horizontal">
+													<Label Content="Service"/>
+													<TextBox Text="{Binding Path=Value}"/>
+												</StackPanel>
+											</GroupBox>
+										</Grid>
+									</DataTemplate>
+									
 								</ItemsControl.Resources>
 								<ItemsControl.ItemsPanel>
 									<ItemsPanelTemplate>
-										<WrapPanel />
+										<WrapPanel Orientation="Vertical" />
 									</ItemsPanelTemplate>
 								</ItemsControl.ItemsPanel>
 								<ItemsControl.ItemTemplate>
