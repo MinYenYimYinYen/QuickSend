@@ -12,7 +12,7 @@ namespace QuickSend.Templates.CancelSave
 {
 	public class PriceObjectionInput : Input
 	{
-		public PriceObjectionInput(PriceObjection instance, PropertyInfo propertyInfo, string label, Visibility visibility) : base(instance, propertyInfo, label, visibility)
+		public PriceObjectionInput(PriceObjection instance, PropertyInfo propertyInfo, string label) : base(instance, propertyInfo, label)
 		{
 			instance.OfferLowerPriceChanged += Instance_OfferLowerPriceChanged;
 			instance.OfferRemoveServicesChanged += Instance_OfferRemoveServicesChanged;

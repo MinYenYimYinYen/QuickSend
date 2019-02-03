@@ -18,12 +18,12 @@ namespace QuickSend_AppLayer.Calc
 		private  string _visibility;
 
 		public Input() { }
-		public Input(PriceObjection instance, PropertyInfo propertyInfo, string label,Vis visibility)
+		public Input(PriceObjection instance, PropertyInfo propertyInfo, string label)
 		{
 			Instance = instance;
 			Property = propertyInfo;
 			Label = label;
-			Visibility = visibility.ToString();
+			
 		}
 
 		private void Instance_OfferLowerPriceChanged(object sender, Vis e)
