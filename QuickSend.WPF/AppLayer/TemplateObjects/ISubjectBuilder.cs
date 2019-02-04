@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace QuickSend.WPF.AppLayer.TemplateObjects
 {
-	public class ITemplateSubjectBuilder
+	public interface ISubjectBuilder<T>
 	{
 	}
 }

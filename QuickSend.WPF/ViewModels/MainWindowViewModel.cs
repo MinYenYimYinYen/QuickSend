@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuickSend.WPF.AppLayer.TemplateObjects
+namespace QuickSend.WPF.ViewModels
 {
-	public interface ITemplate
+	public class MainWindowViewModel
 	{
-		IMessage Message { get; set; }
-
+		
 	}
 }

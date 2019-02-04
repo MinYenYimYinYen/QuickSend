@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuickSend.WPF.AppLayer.TemplateObjects
+namespace QuickSend.WPF.AppLayer.Templates.CancelSave.WhyResponse
 {
-	public class ITemplateInputLiterals
+	public class Why
 	{
 	}
 }

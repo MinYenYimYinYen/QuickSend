@@ -1,4 +1,8 @@
-﻿using System;
+﻿using QuickSend.WPF.AppLayer.TemplateObjects;
+using QuickSend.WPF.AppLayer.TemplateObjects.VariableSets;
+using QuickSend.WPF.AppLayer.Templates.CancelSave.WhyResponse;
+using QuickSend.WPF.AppLayer.Templates.VariableSets;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -18,7 +22,15 @@ namespace QuickSend.WPF
 		protected override void OnStartup(StartupEventArgs e)
 		{
 			IUnityContainer container = new UnityContainer();
-			container.RegisterType<itemplate>
+
+			container.RegisterType<IGreeting, Greeting>();
+
+			container.RegisterType<ITemplate<Why>, WhyTemplate>();
+			container.RegisterType<ISubjectBuilder<Why>, WhySubject>();
+			container.RegisterType<IBodyBuilder<Why>, WhyBody>();
+
+			MainWindow mainWindow = container.Resolve<MainWindow>();
+			mainWindow.Show();
 		}
 	}
 }

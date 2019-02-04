@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace QuickSend.WPF.AppLayer.TemplateObjects
 {
-	public interface Message
+	public interface IBodyBuilder<T>
 	{
-		string Subject { get; set; }
-		string Body { get; set; }
 	}
 }

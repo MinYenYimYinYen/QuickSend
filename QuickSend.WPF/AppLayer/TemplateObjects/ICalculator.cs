@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace QuickSend.WPF.AppLayer.TemplateObjects
 {
-	public interface ITemplateInput<T>
+	public interface ICalculator
 	{
-
-		string Label { get; set; }
-		new  T Value { get; set; }
 	}
-
 }

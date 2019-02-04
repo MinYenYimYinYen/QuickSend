@@ -67,6 +67,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppLayer\Collections\MasterTemplateCollection.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -75,9 +77,19 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="AppLayer\TemplateObjects\IBodyBuilder.cs" />
+    <Compile Include="AppLayer\TemplateObjects\ICalculator.cs" />
     <Compile Include="AppLayer\TemplateObjects\IMessage.cs" />
+    <Compile Include="AppLayer\TemplateObjects\VariableSets\IGreeting.cs" />
+    <Compile Include="AppLayer\TemplateObjects\VariableSets\IVariableSet.cs" />
     <Compile Include="AppLayer\TemplateObjects\ITemplate.cs" />
-    <Compile Include="AppLayer\TemplateObjects\ITemplateInput.cs" />
+    <Compile Include="AppLayer\TemplateObjects\ISubjectBuilder.cs" />
+    <Compile Include="AppLayer\TemplateObjects\TemplateInput.cs" />
+    <Compile Include="AppLayer\Templates\CancelSave\WhyResponse\Why.cs" />
+    <Compile Include="AppLayer\Templates\CancelSave\WhyResponse\WhyBody.cs" />
+    <Compile Include="AppLayer\Templates\CancelSave\WhyResponse\WhySubject.cs" />
+    <Compile Include="AppLayer\Templates\CancelSave\WhyResponse\WhyTemplate.cs" />
+    <Compile Include="AppLayer\Templates\VariableSets\Greeting.cs" />
     <Compile Include="Infrastructure\Command.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -111,8 +123,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AppLayer\TemplateBase\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

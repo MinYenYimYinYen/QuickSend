@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuickSend.WPF.AppLayer.TemplateObjects
+namespace QuickSend.WPF.AppLayer.TemplateObjects.VariableSets
 {
-	public interface BodyBuilder
+	public interface IVariableSet<T>
 	{
+
 	}
 }
